@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
+
 const Index = () => {
   const navigate = useNavigate();
   return <div className="min-h-screen flex flex-col bg-charcoal text-foreground relative">
@@ -30,8 +32,15 @@ const Index = () => {
         </div>
       </main>
       
-      <footer className="py-3 px-4 text-center text-xs text-foreground/50">
-        <p>© {new Date().getFullYear()} @rchetypeX - All rights reserved</p>
+      <footer className="py-3 px-4 text-center flex flex-col items-center justify-center">
+        <a href="https://maiba.studio" target="_blank" rel="noopener noreferrer" className="block mb-2 hover:opacity-80 transition-opacity">
+          <img 
+            src="/lovable-uploads/6b4df03c-dbc9-4186-98fd-d5d03a5575ee.png" 
+            alt="Maiba Studio" 
+            className="h-12 md:h-14"
+          />
+        </a>
+        <p className="text-xs text-foreground/50">© {new Date().getFullYear()} @rchetypeX - All rights reserved</p>
       </footer>
     </div>;
 };
