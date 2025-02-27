@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { GeneratedIdentity } from '@/lib/archetypes';
 import { useArchetype } from '@/context/ArchetypeContext';
 import { ArrowLeft, Save } from 'lucide-react';
@@ -16,6 +16,22 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
   const { resetSelections, selectedFoundation, selectedExpression, selectedFunction } = useArchetype();
   const navigate = useNavigate();
   const resultRef = useRef<HTMLDivElement>(null);
+  const [logoLoaded, setLogoLoaded] = useState(false);
+  const [logoImage, setLogoImage] = useState<HTMLImageElement | null>(null);
+
+  // Preload logo image for export
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/lovable-uploads/4048d3b1-d98a-4f7c-a3f2-97a8db4ca71f.png";
+    img.onload = () => {
+      setLogoImage(img);
+      setLogoLoaded(true);
+    };
+    img.onerror = () => {
+      console.error("Failed to load logo image");
+      setLogoLoaded(true); // Continue without logo if it fails to load
+    };
+  }, []);
 
   const handleRestart = () => {
     resetSelections();
@@ -34,49 +50,65 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
       
       // Create temporary element for clean export
       const exportDiv = document.createElement('div');
-      exportDiv.className = "archetype-export bg-[#222222] p-8 rounded-xl text-white";
-      exportDiv.style.width = "600px";
+      exportDiv.className = "archetype-export";
+      exportDiv.style.width = "700px";
       exportDiv.style.position = "absolute";
       exportDiv.style.left = "-9999px";
+      exportDiv.style.backgroundColor = "#222222";
+      exportDiv.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")";
+      exportDiv.style.backgroundBlendMode = "overlay";
+      exportDiv.style.borderRadius = "12px";
+      exportDiv.style.padding = "32px";
+      exportDiv.style.color = "white";
+      exportDiv.style.fontFamily = "Inter, sans-serif";
       document.body.appendChild(exportDiv);
       
       // Fill with formatted content
       exportDiv.innerHTML = `
-        <div class="text-center px-6 py-8 bg-[#222222] rounded-xl">
-          <div class="mb-6 flex justify-center gap-4">
-            ${identity.emojis.map(emoji => `<span class="text-5xl">${emoji}</span>`).join('')}
+        <div class="text-center px-6 py-8 rounded-xl" style="position: relative; z-index: 1;">
+          <!-- Logo at the top -->
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img 
+              src="/lovable-uploads/4048d3b1-d98a-4f7c-a3f2-97a8db4ca71f.png" 
+              alt="Maiba Studio" 
+              style="height: 60px; margin: 0 auto;"
+            />
+          </div>
+
+          <div style="margin-bottom: 24px; display: flex; justify-content: center; gap: 16px;">
+            ${identity.emojis.map(emoji => `<span style="font-size: 48px;">${emoji}</span>`).join('')}
           </div>
           
-          <h2 class="text-4xl font-bold mb-4 text-white">${identity.title}</h2>
+          <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 16px; color: white;">${identity.title}</h2>
           
-          <div class="mb-6 text-lg leading-relaxed text-gray-300">
+          <div style="margin-bottom: 24px; font-size: 18px; line-height: 1.6; color: #E0E0E0; max-width: 600px; margin-left: auto; margin-right: auto;">
             ${identity.description}
           </div>
           
-          <div class="grid grid-cols-2 gap-4 mb-6">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; text-align: left;">
             <div>
-              <h3 class="text-green-400 font-semibold mb-2">Strengths</h3>
-              <ul class="text-left text-gray-300 list-disc list-inside">
-                ${identity.strengths.map(s => `<li>${s}</li>`).join('')}
+              <h3 style="color: #10B981; font-weight: 600; margin-bottom: 12px;">Strengths</h3>
+              <ul style="color: #D1D5DB; list-style-type: disc; padding-left: 20px;">
+                ${identity.strengths.map(s => `<li style="margin-bottom: 6px;">${s}</li>`).join('')}
               </ul>
             </div>
             
             <div>
-              <h3 class="text-red-400 font-semibold mb-2">Challenges</h3>
-              <ul class="text-left text-gray-300 list-disc list-inside">
-                ${identity.challenges.map(c => `<li>${c}</li>`).join('')}
+              <h3 style="color: #EF4444; font-weight: 600; margin-bottom: 12px;">Challenges</h3>
+              <ul style="color: #D1D5DB; list-style-type: disc; padding-left: 20px;">
+                ${identity.challenges.map(c => `<li style="margin-bottom: 6px;">${c}</li>`).join('')}
               </ul>
             </div>
           </div>
           
-          <div class="flex justify-center mb-4">
-            <div class="inline-flex flex-wrap justify-center gap-2 max-w-md">
+          <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+            <div style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 500px;">
               ${identity.traits.map(trait => 
-                `<span class="inline-block text-sm bg-white/10 px-3 py-1 rounded m-1">${trait}</span>`).join('')}
+                `<span style="display: inline-block; font-size: 14px; background-color: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 4px; margin: 4px;">${trait}</span>`).join('')}
             </div>
           </div>
           
-          <div class="mt-8 text-center text-xs text-gray-500">
+          <div style="margin-top: 32px; text-align: center; font-size: 12px; color: #9CA3AF;">
             Generated by Archetype - Maiba Studio
           </div>
         </div>
@@ -87,7 +119,8 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
         backgroundColor: "#222222",
         scale: 2, // Better resolution
         logging: false,
-        useCORS: true
+        useCORS: true,
+        allowTaint: true
       });
       
       // Convert to JPEG and download
