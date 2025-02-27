@@ -28,132 +28,113 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
   const displayEmojis = [...identity.emojis];
 
   return (
-    <div className="w-full max-w-md mx-auto px-4 py-4 animate-fade-in">
-      <div className="flex justify-center mb-6 space-x-6">
-        {displayEmojis.map((emoji, index) => (
-          <div 
-            key={index} 
-            className="text-4xl animate-float" 
-            style={{ animationDelay: `${index * 0.2}s` }}
-          >
-            {emoji}
-          </div>
-        ))}
-      </div>
-
-      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-2 text-white">
-        {identity.title}
-      </h1>
+    <div className="w-full max-w-sm mx-auto px-4 py-4 animate-fade-in">
+      <section id="identity-core" className="text-center mb-8 w-full">
+        <div id="glyphs" className="mb-6 flex justify-center gap-4">
+          {displayEmojis.map((emoji, index) => (
+            <span 
+              key={index} 
+              className="text-4xl animate-float" 
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              {emoji}
+            </span>
+          ))}
+        </div>
+        
+        <h2 className="text-3xl font-bold mb-3">{identity.title}</h2>
+        
+        <p className="text-gray-400 text-lg leading-relaxed mb-8">
+          {identity.description}
+        </p>
+      </section>
       
-      <p className="text-center text-blue-300/80 mb-6">
-        {identity.description}
-      </p>
-
-      <div className="space-y-4">
+      <section id="archetype-details" className="w-full space-y-4 mb-8">
         {/* Foundation */}
-        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
-          <h3 className="text-crimson font-medium mb-1 flex items-center">
-            <span className="mr-2">◉</span> Foundation: {identity.traits[0]}
+        <div id="foundation" className="bg-white/5 rounded-xl p-4">
+          <h3 className="text-crimson font-semibold mb-2 flex items-center gap-2">
+            <span>◉</span> Foundation: {identity.traits[0]}
           </h3>
-          <p className="text-sm text-white/80 mb-2">
-            The {identity.traits[0]} forms the core of this identity.
+          <p className="text-gray-300 text-sm">
+            The {identity.traits[0]} forms the core of this identity, bringing {identity.traits[1]}-like qualities.
           </p>
-          <div className="flex flex-wrap gap-2">
-            <span className="bg-charcoal border border-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
-              {identity.traits[0]}-like
-            </span>
-            <span className="bg-charcoal border border-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
-              {identity.traits[1]}
-            </span>
-          </div>
         </div>
 
         {/* Expression */}
-        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
-          <h3 className="text-crimson font-medium mb-1 flex items-center">
-            <span className="mr-2">◉</span> Expression: {identity.traits[2]}
+        <div id="expression" className="bg-white/5 rounded-xl p-4">
+          <h3 className="text-crimson font-semibold mb-2 flex items-center gap-2">
+            <span>◉</span> Expression: {identity.traits[2]}
           </h3>
-          <p className="text-sm text-white/80 mb-2">
-            This identity expresses itself through unique methods and approaches.
+          <p className="text-gray-300 text-sm">
+            This identity expresses itself through {identity.traits[2]} methods and {identity.traits[3]} approaches.
           </p>
-          <div className="flex flex-wrap gap-2">
-            <span className="bg-charcoal border border-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
-              {identity.traits[2]}
-            </span>
-            <span className="bg-charcoal border border-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
-              {identity.traits[3]}
-            </span>
-          </div>
         </div>
 
         {/* Function */}
-        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
-          <h3 className="text-crimson font-medium mb-1 flex items-center">
-            <span className="mr-2">✧</span> Function: {identity.traits[4]}
+        <div id="function" className="bg-white/5 rounded-xl p-4">
+          <h3 className="text-crimson font-semibold mb-2 flex items-center gap-2">
+            <span>✧</span> Function: {identity.traits[4]}
           </h3>
-          <p className="text-sm text-white/80 mb-2">
-            This identity functions with purpose and intention.
+          <p className="text-gray-300 text-sm">
+            This identity functions with purpose and intention through {identity.traits[4]} specialization.
           </p>
         </div>
 
-        {/* Strengths */}
-        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
-          <h3 className="text-green-500 font-medium mb-2">Strengths</h3>
-          <ul className="space-y-1 text-sm">
-            {identity.strengths.map((strength, index) => (
-              <li key={index} className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>{strength}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Challenges */}
-        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
-          <h3 className="text-red-500 font-medium mb-2">Challenges</h3>
-          <ul className="space-y-1 text-sm">
-            {identity.challenges.map((challenge, index) => (
-              <li key={index} className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>{challenge}</span>
-              </li>
-            ))}
-          </ul>
+        {/* Identity Traits */}
+        <div id="identity-traits" className="bg-white/5 rounded-xl p-4 space-y-4">
+          {/* Strengths */}
+          <div id="strengths">
+            <h3 className="text-green-400 text-sm font-semibold mb-2">Strengths</h3>
+            <ul className="text-gray-300 text-sm list-disc list-inside">
+              {identity.strengths.map((strength, index) => (
+                <li key={index}>{strength}</li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Challenges */}
+          <div id="challenges">
+            <h3 className="text-red-400 text-sm font-semibold mb-2">Challenges</h3>
+            <ul className="text-gray-300 text-sm list-disc list-inside">
+              {identity.challenges.map((challenge, index) => (
+                <li key={index}>{challenge}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Key Attributes */}
-        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
-          <h3 className="text-crimson font-medium mb-2 flex items-center">
-            <span className="mr-2">✧</span> Key Attributes
+        <div id="adjectives" className="bg-white/5 rounded-xl p-4">
+          <h3 className="text-crimson font-semibold mb-2 flex items-center gap-2">
+            <span>✧</span> Key Attributes
           </h3>
           <div className="flex flex-wrap gap-2">
             {identity.traits.map((trait, index) => (
               <span 
                 key={index} 
-                className="bg-charcoal border border-white/10 px-2 py-1 rounded-full text-xs font-medium"
+                className="text-xs bg-white/10 px-2 py-1 rounded"
               >
                 {trait}
               </span>
             ))}
           </div>
         </div>
-      </div>
-
-      <div className="flex justify-between mt-8 gap-4">
+      </section>
+      
+      <section id="action-buttons" className="flex gap-4 w-full">
         <button 
           onClick={handleRestart}
-          className="w-1/2 py-3 flex items-center justify-center bg-transparent border border-crimson text-crimson rounded-lg hover:bg-crimson/10"
+          className="flex-1 bg-transparent border-2 border-crimson text-crimson rounded-xl py-3 font-semibold hover:bg-crimson hover:text-white transition-colors flex items-center justify-center"
         >
           <ArrowLeft size={18} className="mr-2" /> Restart
         </button>
         <button 
           onClick={handleSave}
-          className="w-1/2 py-3 flex items-center justify-center bg-crimson text-white rounded-lg hover:bg-crimson/90"
+          className="flex-1 bg-crimson text-white rounded-xl py-3 font-semibold hover:bg-crimson/90 transition-colors flex items-center justify-center"
         >
           <Save size={18} className="mr-2" /> Save
         </button>
-      </div>
+      </section>
     </div>
   );
 };

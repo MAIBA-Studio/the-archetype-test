@@ -20,10 +20,13 @@ const Result = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white relative">
+    <div className="flex flex-col min-h-screen bg-[#1A1A1A] text-white relative overflow-hidden">
+      {/* Grain texture overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none grain-bg"></div>
+      
       <Header />
       
-      <main className="flex-1 flex flex-col items-center pt-4 sm:pt-6 pb-8 sm:pb-10">
+      <main className="flex-1 flex flex-col items-center pt-6 pb-10">
         <IdentityResult identity={generatedIdentity} />
       </main>
       

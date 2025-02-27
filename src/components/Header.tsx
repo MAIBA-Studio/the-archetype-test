@@ -7,18 +7,20 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   
   return (
-    <header className="py-4 px-5 flex items-center justify-between relative z-10 text-white">
-      <div 
-        onClick={() => navigate('/')} 
-        className="cursor-pointer font-bold text-lg"
-      >
-        @rchetypeX
-      </div>
-      <div 
-        onClick={() => navigate('/')}
-        className="cursor-pointer p-1"
-      >
-        <X size={20} />
+    <header className="py-4 px-6">
+      <div className="flex justify-between items-center">
+        <h1 
+          onClick={() => navigate('/')} 
+          className="text-xl font-bold cursor-pointer"
+        >
+          @rchetypeX
+        </h1>
+        <button 
+          onClick={() => navigate('/')}
+          className="text-crimson"
+        >
+          <X size={24} />
+        </button>
       </div>
     </header>
   );
