@@ -99,7 +99,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
             </option>
             {availableArchetypes.map((archetype) => (
               <option key={archetype.id} value={archetype.id}>
-                {archetype.name} ({archetype.category})
+                {archetype.name}
               </option>
             ))}
           </select>
