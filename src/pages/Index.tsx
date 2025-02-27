@@ -1,13 +1,9 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
-
 const Index = () => {
   const navigate = useNavigate();
-
-  return (
-    <div className="min-h-screen flex flex-col bg-charcoal text-foreground relative">
+  return <div className="min-h-screen flex flex-col bg-charcoal text-foreground relative">
       {/* Grain texture overlay */}
       <div className="grain-bg"></div>
       
@@ -16,7 +12,7 @@ const Index = () => {
       <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 pb-8">
         <div className="max-w-md w-full mx-auto text-center">
           <div className="flex justify-center mb-6">
-            <div className="text-5xl sm:text-6xl animate-float">⚙️</div>
+            <div className="text-5xl sm:text-6xl animate-float">👁️</div>
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 tracking-tight bg-gradient-to-r from-crimson to-crimson/80 bg-clip-text text-transparent animate-fade-in">
@@ -39,8 +35,6 @@ const Index = () => {
       <footer className="py-3 px-4 text-center text-xs text-foreground/50">
         <p>© {new Date().getFullYear()} @rchetypeX - All rights reserved</p>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
