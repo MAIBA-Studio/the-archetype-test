@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import ArchetypeSelect from '@/components/ArchetypeSelect';
 import { useArchetype } from '@/context/ArchetypeContext';
 import { CheckCircle, Circle } from 'lucide-react';
+
 const Selection = () => {
   const navigate = useNavigate();
   const {
@@ -14,10 +16,12 @@ const Selection = () => {
     selectedFunction,
     isStepActive
   } = useArchetype();
+
   const handleReveal = () => {
     generateArchetype();
     navigate('/result');
   };
+
   return <div className="min-h-screen flex flex-col bg-charcoal text-foreground relative">
       {/* Grain texture overlay */}
       <div className="grain-bg"></div>
@@ -66,8 +70,12 @@ const Selection = () => {
             </div>
           </div>
           
-          <button onClick={handleReveal} disabled={!allArchetypesSelected} className={`btn-primary w-full ${!allArchetypesSelected ? 'opacity-50 cursor-not-allowed' : 'animate-pulse'}`}>
-            {allArchetypesSelected ? 'Reveal @rchetype' : 'Complete All Selections'}
+          <button 
+            onClick={handleReveal} 
+            disabled={!allArchetypesSelected} 
+            className={`btn-primary w-full ${!allArchetypesSelected ? 'opacity-50 cursor-not-allowed' : 'shadow-lg transform hover:scale-[1.02] transition-all'}`}
+          >
+            {allArchetypesSelected ? '✨ Reveal @rchetype ✨' : 'Complete All Selections'}
           </button>
         </div>
       </main>
@@ -77,4 +85,5 @@ const Selection = () => {
       </footer>
     </div>;
 };
+
 export default Selection;
