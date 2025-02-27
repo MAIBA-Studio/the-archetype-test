@@ -26,11 +26,11 @@ const Result = () => {
       
       <Header />
       
-      <main className="flex-1 flex flex-col items-center pt-8 pb-16">
+      <main className="flex-1 flex flex-col items-center pt-4 sm:pt-8 pb-10 sm:pb-16">
         <IdentityResult identity={generatedIdentity} />
       </main>
       
-      <footer className="py-4 px-6 text-center text-xs text-foreground/50">
+      <footer className="py-3 px-4 text-center text-xs text-foreground/50">
         <p>© {new Date().getFullYear()} @rchetypeX - All rights reserved</p>
       </footer>
     </div>

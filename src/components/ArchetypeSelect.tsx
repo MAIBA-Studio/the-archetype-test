@@ -9,6 +9,11 @@ interface ArchetypeSelectProps {
   label: string;
 }
 
+// Get all archetypes for each dropdown
+const getAllArchetypes = (): Archetype[] => {
+  return [...foundationArchetypes, ...expressionArchetypes, ...functionArchetypes];
+};
+
 const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
   const {
     selectedFoundation,
@@ -20,16 +25,8 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
   } = useArchetype();
 
   const getArchetypeOptions = (): Archetype[] => {
-    switch (type) {
-      case 'foundation':
-        return foundationArchetypes;
-      case 'expression':
-        return expressionArchetypes;
-      case 'function':
-        return functionArchetypes;
-      default:
-        return [];
-    }
+    // Use all archetypes for each dropdown
+    return getAllArchetypes();
   };
 
   const getCurrentSelection = (): Archetype | null => {
@@ -47,7 +44,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const archetypeId = e.target.value;
-    const selected = getArchetypeOptions().find(a => a.id === archetypeId) || null;
+    const selected = getAllArchetypes().find(a => a.id === archetypeId) || null;
     
     switch (type) {
       case 'foundation':
@@ -66,7 +63,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
   const archetypes = getArchetypeOptions();
 
   return (
-    <div className="mb-6 w-full max-w-sm animate-fade-in">
+    <div className="mb-6 w-full animate-fade-in">
       <label className="block text-sm font-medium text-foreground/80 mb-2">
         {label}
       </label>
@@ -81,7 +78,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
           </option>
           {archetypes.map((archetype) => (
             <option key={archetype.id} value={archetype.id}>
-              {archetype.emoji} {archetype.name}
+              {archetype.name}
             </option>
           ))}
         </select>

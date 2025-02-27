@@ -70,13 +70,20 @@
 }
 
 .archetype-dropdown {
-  @apply w-full bg-secondary border border-border/80 rounded-md px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all cursor-pointer;
+  @apply w-full bg-secondary border border-border/80 rounded-md px-3 py-2.5 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all cursor-pointer text-sm sm:text-base;
 }
 
 .btn-primary {
-  @apply bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-md font-medium transition-all active:scale-[0.98];
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 px-4 sm:px-6 py-2.5 sm:py-3 rounded-md font-medium transition-all active:scale-[0.98] text-sm sm:text-base;
 }
 
 .btn-secondary {
-  @apply bg-secondary text-secondary-foreground hover:bg-muted px-6 py-3 rounded-md font-medium transition-all active:scale-[0.98];
+  @apply bg-secondary text-secondary-foreground hover:bg-muted px-4 sm:px-6 py-2.5 sm:py-3 rounded-md font-medium transition-all active:scale-[0.98] text-sm sm:text-base;
+}
+
+/* Add styles for PWA capabilities */
+@media (display-mode: standalone) {
+  body {
+    overscroll-behavior-y: none;
+  }
 }

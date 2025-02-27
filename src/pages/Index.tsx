@@ -13,21 +13,21 @@ const Index = () => {
       
       <Header />
       
-      <main className="flex-1 flex flex-col items-center justify-center px-6 pb-12">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 pb-8">
         <div className="max-w-md w-full mx-auto text-center">
           <div className="flex justify-center mb-6">
-            <div className="text-6xl animate-float">⚙️</div>
+            <div className="text-5xl sm:text-6xl animate-float">⚙️</div>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight bg-gradient-to-r from-crimson to-crimson/80 bg-clip-text text-transparent animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 tracking-tight bg-gradient-to-r from-crimson to-crimson/80 bg-clip-text text-transparent animate-fade-in">
             @rchetypeX
           </h1>
           
-          <h2 className="text-2xl font-semibold mb-6 animate-fade-in [animation-delay:100ms]">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 animate-fade-in [animation-delay:100ms]">
             Build Your @rchetype
           </h2>
           
-          <p className="text-foreground/70 mb-12 animate-fade-in [animation-delay:200ms]">
+          <p className="text-foreground/70 mb-8 animate-fade-in [animation-delay:200ms]">
             Select three archetypes to generate a unique persona for storytelling, 
             role-playing, or self-discovery.
           </p>
@@ -41,7 +41,7 @@ const Index = () => {
         </div>
       </main>
       
-      <footer className="py-4 px-6 text-center text-xs text-foreground/50">
+      <footer className="py-3 px-4 text-center text-xs text-foreground/50">
         <p>© {new Date().getFullYear()} @rchetypeX - All rights reserved</p>
       </footer>
     </div>

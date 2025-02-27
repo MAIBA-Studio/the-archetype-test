@@ -25,12 +25,12 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto px-6 py-10 animate-fade-in">
+    <div className="w-full max-w-lg mx-auto px-4 sm:px-6 py-6 sm:py-10 animate-fade-in">
       <div className="flex justify-center mb-6 space-x-4">
         {identity.emojis.map((emoji, index) => (
           <div 
             key={index} 
-            className="text-4xl animate-float" 
+            className="text-3xl sm:text-4xl animate-float" 
             style={{ animationDelay: `${index * 0.2}s` }}
           >
             {emoji}
@@ -38,16 +38,16 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
         ))}
       </div>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 bg-gradient-to-r from-crimson/90 to-crimson/70 bg-clip-text text-transparent">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 bg-gradient-to-r from-crimson/90 to-crimson/70 bg-clip-text text-transparent">
         {identity.title}
       </h1>
 
-      <div className="neo-card p-6 mb-8">
+      <div className="neo-card p-4 sm:p-6 mb-6">
         <p className="text-center text-foreground/90 mb-6">
           {identity.description}
         </p>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6">
           <div>
             <h3 className="text-lg font-medium mb-3 text-crimson">Strengths</h3>
             <ul className="space-y-2">

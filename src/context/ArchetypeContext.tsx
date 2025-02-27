@@ -17,6 +17,11 @@ type ArchetypeContextType = {
 
 const ArchetypeContext = createContext<ArchetypeContextType | undefined>(undefined);
 
+// Get all archetypes for each dropdown
+const getAllArchetypes = (): Archetype[] => {
+  return [...foundationArchetypes, ...expressionArchetypes, ...functionArchetypes];
+};
+
 export const ArchetypeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [selectedFoundation, setSelectedFoundation] = useState<Archetype | null>(null);
   const [selectedExpression, setSelectedExpression] = useState<Archetype | null>(null);
