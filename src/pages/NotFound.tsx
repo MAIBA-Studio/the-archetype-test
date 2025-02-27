@@ -32,8 +32,11 @@ const NotFound = () => {
         </div>
       </main>
       
-      <footer className="py-4 px-6 text-center text-xs text-foreground/50">
-        <p>© {new Date().getFullYear()} @rchetypeX - All rights reserved</p>
+      <footer className="py-4 px-6 text-center">
+        <a href="https://x.com/MaibaStudio" target="_blank" rel="noopener noreferrer" className="block mb-3 hover:opacity-80 transition-opacity">
+          <img src="/lovable-uploads/6b4df03c-dbc9-4186-98fd-d5d03a5575ee.png" alt="Maiba Studio" className="h-12" />
+        </a>
+        <p className="text-xs text-foreground/50">© {new Date().getFullYear()} Archetype - All rights reserved</p>
       </footer>
     </div>
   );
