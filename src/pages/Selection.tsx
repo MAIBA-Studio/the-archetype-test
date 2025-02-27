@@ -23,7 +23,7 @@ const Selection = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-charcoal text-foreground relative">
+    <div className="min-h-screen flex flex-col bg-charcoal text-white relative">
       {/* Grain texture overlay */}
       <div className="grain-bg"></div>
       
@@ -31,7 +31,7 @@ const Selection = () => {
       
       <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
         <div className="w-full max-w-lg mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center bg-gradient-to-r from-crimson/90 to-crimson/70 bg-clip-text text-transparent">Select Your Type</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center text-white">Select Your Type</h2>
           
           {/* Progress indicator */}
           <div className="flex items-center justify-between mb-8 px-4">
@@ -40,7 +40,7 @@ const Selection = () => {
                 <CheckCircle className="w-6 h-6 text-crimson" /> : 
                 <Circle className="w-6 h-6 text-crimson" />
               }
-              <span className="text-xs mt-1 font-medium">Foundation</span>
+              <span className="text-xs mt-1 font-medium text-white">Foundation</span>
             </div>
             <div className="w-16 h-0.5 bg-gray-700">
               {selectedFoundation && 
@@ -58,7 +58,7 @@ const Selection = () => {
                 <CheckCircle className="w-6 h-6 text-crimson" /> : 
                 <Circle className={`w-6 h-6 ${isStepActive('expression') ? 'text-crimson' : 'text-gray-700'}`} />
               }
-              <span className="text-xs mt-1 font-medium">Expression</span>
+              <span className="text-xs mt-1 font-medium text-white">Expression</span>
             </div>
             <div className="w-16 h-0.5 bg-gray-700">
               {selectedExpression && 
@@ -76,7 +76,7 @@ const Selection = () => {
                 <CheckCircle className="w-6 h-6 text-crimson" /> : 
                 <Circle className={`w-6 h-6 ${isStepActive('function') ? 'text-crimson' : 'text-gray-700'}`} />
               }
-              <span className="text-xs mt-1 font-medium">Function</span>
+              <span className="text-xs mt-1 font-medium text-white">Function</span>
             </div>
           </div>
           
@@ -106,7 +106,7 @@ const Selection = () => {
             className="h-12 md:h-14"
           />
         </a>
-        <p className="text-xs text-foreground/50">© {new Date().getFullYear()} Maiba Studio - All rights reserved</p>
+        <p className="text-xs text-white/70">© {new Date().getFullYear()} Maiba Studio - All rights reserved</p>
       </footer>
     </div>
   );

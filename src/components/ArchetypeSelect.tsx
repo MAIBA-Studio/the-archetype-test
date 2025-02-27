@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Archetype, foundationArchetypes, expressionArchetypes, functionArchetypes } from '@/lib/archetypes';
 import { ChevronDown, Lock } from 'lucide-react';
@@ -74,11 +75,11 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({
   const currentSelection = getCurrentSelection();
   const availableArchetypes = getAvailableArchetypes();
   return <div className={`w-full animate-fade-in ${isActive ? 'opacity-100' : 'opacity-50'}`}>
-      <label className="block text-sm font-medium text-foreground/90 mb-2 bg-transparent">
+      <label className="block text-sm font-medium text-white mb-2 bg-transparent">
         {label}
       </label>
       <div className="relative">
-        {isActive ? <select value={currentSelection?.id || ''} onChange={handleChange} className="w-full bg-background/10 border border-white/10 rounded-md py-2.5 px-3 appearance-none focus:outline-none focus:ring-1 focus:ring-crimson/50 transition-all text-white" disabled={!isActive}>
+        {isActive ? <select value={currentSelection?.id || ''} onChange={handleChange} className="w-full bg-background/10 border border-white/10 rounded-md py-2.5 px-3 appearance-none focus:outline-none focus:ring-1 focus:ring-crimson/50 transition-all text-white font-medium" disabled={!isActive}>
             <option value="" disabled>
               Select {label}...
             </option>
@@ -86,14 +87,14 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({
                 {archetype.emoji} {archetype.name}
               </option>)}
           </select> : <div className="flex items-center justify-between w-full bg-background/5 border border-white/5 rounded-md py-2.5 px-3 cursor-not-allowed">
-            <span className="text-foreground/50">Select {label}...</span>
-            <Lock size={16} className="text-foreground/40" />
+            <span className="text-white/50">Select {label}...</span>
+            <Lock size={16} className="text-white/40" />
           </div>}
         {isActive && <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <ChevronDown size={18} className="text-foreground/60" />
+            <ChevronDown size={18} className="text-white/60" />
           </div>}
       </div>
-      {currentSelection && <p className="mt-2 text-sm text-foreground/70 italic">
+      {currentSelection && <p className="mt-2 text-sm text-white/80 italic">
           {currentSelection.description}
         </p>}
     </div>;
