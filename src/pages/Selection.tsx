@@ -93,7 +93,7 @@ const Selection = () => {
             disabled={!allArchetypesSelected} 
             className={`btn-primary w-full max-w-md mx-auto ${!allArchetypesSelected ? 'opacity-50 cursor-not-allowed' : 'shadow-lg shadow-crimson/10 transform hover:scale-[1.02] transition-all'}`}
           >
-            {allArchetypesSelected ? '✨ Reveal @rchetype ✨' : 'Complete All Selections'}
+            {allArchetypesSelected ? '✨ Reveal Your Archetype ✨' : 'Complete All Selections'}
           </button>
         </div>
       </main>
