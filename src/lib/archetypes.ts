@@ -322,24 +322,24 @@ export const generateIdentity = (
   // Generate a description that combines aspects of all three
   const description = `A ${foundation.traits[0].toLowerCase()} individual who combines ${expression.name.toLowerCase()}'s ${expression.traits[0].toLowerCase()} nature with ${function_.name.toLowerCase()}'s ${function_.traits[0].toLowerCase()} approach.`;
   
-  // Combine emojis
+  // Combine emojis in the correct order: Foundation, Expression, Function
   const emojis = [foundation.emoji, expression.emoji, function_.emoji];
   
-  // Select strengths (2 from each)
+  // Select strengths (1 from each)
   const strengths = [
     ...foundation.strengths.slice(0, 1),
     ...expression.strengths.slice(0, 1),
     ...function_.strengths.slice(0, 1)
   ];
   
-  // Select challenges (2 from each)
+  // Select challenges (1 from each)
   const challenges = [
     ...foundation.challenges.slice(0, 1),
     ...expression.challenges.slice(0, 1),
     ...function_.challenges.slice(0, 1)
   ];
   
-  // Select traits (2 from each)
+  // Select traits (1 from each, plus an extra from foundation)
   const traits = [
     ...foundation.traits.slice(0, 1),
     ...expression.traits.slice(0, 1),
