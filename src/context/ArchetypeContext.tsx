@@ -13,6 +13,7 @@ type ArchetypeContextType = {
   generateArchetype: () => void;
   resetSelections: () => void;
   allArchetypesSelected: boolean;
+  isStepActive: (step: 'foundation' | 'expression' | 'function') => boolean;
 };
 
 const ArchetypeContext = createContext<ArchetypeContextType | undefined>(undefined);
@@ -31,6 +32,19 @@ export const ArchetypeProvider: React.FC<{ children: ReactNode }> = ({ children 
   const allArchetypesSelected = Boolean(
     selectedFoundation && selectedExpression && selectedFunction
   );
+
+  const isStepActive = (step: 'foundation' | 'expression' | 'function'): boolean => {
+    switch (step) {
+      case 'foundation':
+        return true; // Foundation is always active
+      case 'expression':
+        return selectedFoundation !== null; // Expression is active only if Foundation is selected
+      case 'function':
+        return selectedFoundation !== null && selectedExpression !== null; // Function is active only if Foundation and Expression are selected
+      default:
+        return false;
+    }
+  };
 
   const generateArchetype = () => {
     if (allArchetypesSelected) {
@@ -62,7 +76,8 @@ export const ArchetypeProvider: React.FC<{ children: ReactNode }> = ({ children 
         setSelectedFunction,
         generateArchetype,
         resetSelections,
-        allArchetypesSelected
+        allArchetypesSelected,
+        isStepActive
       }}
     >
       {children}

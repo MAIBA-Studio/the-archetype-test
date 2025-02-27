@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Archetype, foundationArchetypes, expressionArchetypes, functionArchetypes } from '@/lib/archetypes';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Lock } from 'lucide-react';
 import { useArchetype } from '@/context/ArchetypeContext';
 
 interface ArchetypeSelectProps {
@@ -22,11 +22,18 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
     setSelectedFoundation,
     setSelectedExpression,
     setSelectedFunction,
+    isStepActive
   } = useArchetype();
 
   const getArchetypeOptions = (): Archetype[] => {
-    // Use all archetypes for each dropdown
-    return getAllArchetypes();
+    // Get all archetypes and filter out any already selected ones
+    const selectedIds = [
+      selectedFoundation?.id,
+      selectedExpression?.id,
+      selectedFunction?.id
+    ].filter(Boolean) as string[];
+
+    return getAllArchetypes().filter(archetype => !selectedIds.includes(archetype.id));
   };
 
   const getCurrentSelection = (): Archetype | null => {
@@ -49,9 +56,14 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
     switch (type) {
       case 'foundation':
         setSelectedFoundation(selected);
+        // Reset subsequent selections when changing foundation
+        setSelectedExpression(null);
+        setSelectedFunction(null);
         break;
       case 'expression':
         setSelectedExpression(selected);
+        // Reset function selection when changing expression
+        setSelectedFunction(null);
         break;
       case 'function':
         setSelectedFunction(selected);
@@ -59,32 +71,43 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
     }
   };
 
+  const isActive = isStepActive(type);
   const currentSelection = getCurrentSelection();
   const archetypes = getArchetypeOptions();
 
   return (
-    <div className="mb-6 w-full animate-fade-in">
+    <div className={`mb-6 w-full animate-fade-in ${isActive ? 'opacity-100' : 'opacity-50'}`}>
       <label className="block text-sm font-medium text-foreground/80 mb-2">
         {label}
       </label>
       <div className="relative">
-        <select
-          value={currentSelection?.id || ''}
-          onChange={handleChange}
-          className="archetype-dropdown appearance-none"
-        >
-          <option value="" disabled>
-            Select {label}...
-          </option>
-          {archetypes.map((archetype) => (
-            <option key={archetype.id} value={archetype.id}>
-              {archetype.name}
+        {isActive ? (
+          <select
+            value={currentSelection?.id || ''}
+            onChange={handleChange}
+            className="archetype-dropdown appearance-none"
+            disabled={!isActive}
+          >
+            <option value="" disabled>
+              Select {label}...
             </option>
-          ))}
-        </select>
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-          <ChevronDown size={18} className="text-foreground/60" />
-        </div>
+            {archetypes.map((archetype) => (
+              <option key={archetype.id} value={archetype.id}>
+                {archetype.name}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <div className="flex items-center justify-between archetype-dropdown bg-secondary/50 cursor-not-allowed">
+            <span className="text-foreground/50">Select {label}...</span>
+            <Lock size={16} className="text-foreground/40" />
+          </div>
+        )}
+        {isActive && (
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+            <ChevronDown size={18} className="text-foreground/60" />
+          </div>
+        )}
       </div>
       {currentSelection && (
         <p className="mt-2 text-sm text-foreground/60">
