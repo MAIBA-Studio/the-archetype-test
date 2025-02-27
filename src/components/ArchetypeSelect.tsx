@@ -9,11 +9,6 @@ interface ArchetypeSelectProps {
   label: string;
 }
 
-// Get all archetypes for each dropdown
-const getAllArchetypes = (): Archetype[] => {
-  return [...foundationArchetypes, ...expressionArchetypes, ...functionArchetypes];
-};
-
 const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
   const {
     selectedFoundation,
@@ -25,15 +20,33 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
     isStepActive
   } = useArchetype();
 
-  const getArchetypeOptions = (): Archetype[] => {
-    // Get all archetypes and filter out any already selected ones
+  // Get archetypes for the specific category
+  const getArchetypesByCategory = (): Archetype[] => {
+    switch (type) {
+      case 'foundation':
+        return foundationArchetypes;
+      case 'expression':
+        return expressionArchetypes;
+      case 'function':
+        return functionArchetypes;
+      default:
+        return [];
+    }
+  };
+
+  const getAvailableArchetypes = (): Archetype[] => {
+    // Get archetypes for this specific category
+    const archetypesForCategory = getArchetypesByCategory();
+    
+    // Get IDs of already selected archetypes to filter them out
     const selectedIds = [
       selectedFoundation?.id,
       selectedExpression?.id,
       selectedFunction?.id
     ].filter(Boolean) as string[];
 
-    return getAllArchetypes().filter(archetype => !selectedIds.includes(archetype.id));
+    // Filter out already selected archetypes
+    return archetypesForCategory.filter(archetype => !selectedIds.includes(archetype.id));
   };
 
   const getCurrentSelection = (): Archetype | null => {
@@ -51,7 +64,9 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const archetypeId = e.target.value;
-    const selected = getAllArchetypes().find(a => a.id === archetypeId) || null;
+    // Find the selected archetype from all archetypes
+    const allArchetypes = [...foundationArchetypes, ...expressionArchetypes, ...functionArchetypes];
+    const selected = allArchetypes.find(a => a.id === archetypeId) || null;
     
     switch (type) {
       case 'foundation':
@@ -73,7 +88,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
 
   const isActive = isStepActive(type);
   const currentSelection = getCurrentSelection();
-  const archetypes = getArchetypeOptions();
+  const availableArchetypes = getAvailableArchetypes();
 
   return (
     <div className={`mb-6 w-full animate-fade-in ${isActive ? 'opacity-100' : 'opacity-50'}`}>
@@ -91,7 +106,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
             <option value="" disabled>
               Select {label}...
             </option>
-            {archetypes.map((archetype) => (
+            {availableArchetypes.map((archetype) => (
               <option key={archetype.id} value={archetype.id}>
                 {archetype.name}
               </option>

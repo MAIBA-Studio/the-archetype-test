@@ -1,9 +1,13 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
+
 const Index = () => {
   const navigate = useNavigate();
-  return <div className="min-h-screen flex flex-col bg-charcoal text-foreground relative">
+  
+  return (
+    <div className="min-h-screen flex flex-col bg-charcoal text-foreground relative">
       {/* Grain texture overlay */}
       <div className="grain-bg"></div>
       
@@ -35,6 +39,8 @@ const Index = () => {
       <footer className="py-3 px-4 text-center text-xs text-foreground/50">
         <p>© {new Date().getFullYear()} @rchetypeX - All rights reserved</p>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
