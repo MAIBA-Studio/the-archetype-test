@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Archetype, foundationArchetypes, expressionArchetypes, functionArchetypes } from '@/lib/archetypes';
 import { ChevronDown, Lock } from 'lucide-react';
@@ -36,8 +35,14 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
       selectedFunction?.id
     ].filter(Boolean) as string[];
 
-    // Filter out already selected archetypes
-    return allArchetypes.filter(archetype => !selectedIds.includes(archetype.id));
+    // Filter out already selected archetypes from available options,
+    // but keep the currently selected one for this dropdown
+    const currentSelection = getCurrentSelection();
+    
+    return allArchetypes.filter(archetype => 
+      !selectedIds.includes(archetype.id) || 
+      (currentSelection && archetype.id === currentSelection.id)
+    );
   };
 
   const getCurrentSelection = (): Archetype | null => {
