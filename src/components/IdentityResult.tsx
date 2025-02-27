@@ -67,7 +67,7 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
       
       // Fill with formatted content
       exportDiv.innerHTML = `
-        <div class="text-center px-6" style="position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
+        <div class="text-center" style="position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
           <!-- Header section with logo -->
           <div style="text-align: center; margin-bottom: 10px;">
             <img 
@@ -84,26 +84,26 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
           
           <!-- Title and description -->
           <div style="margin-bottom: 20px;">
-            <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 16px; color: white;">${identity.title}</h2>
+            <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 16px; color: white; text-align: center;">${identity.title}</h2>
             
-            <div style="font-size: 16px; line-height: 1.6; color: #E0E0E0; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <div style="font-size: 16px; line-height: 1.6; color: #E0E0E0; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;">
               ${identity.description}
             </div>
           </div>
           
           <!-- Strengths and challenges -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; text-align: left;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%; max-width: 720px;">
             <div>
-              <h3 style="color: #10B981; font-weight: 600; margin-bottom: 10px;">Strengths</h3>
-              <ul style="color: #D1D5DB; list-style-type: disc; padding-left: 20px; font-size: 14px;">
-                ${identity.strengths.map(s => `<li style="margin-bottom: 6px;">${s}</li>`).join('')}
+              <h3 style="color: #10B981; font-weight: 600; margin-bottom: 10px; text-align: center;">Strengths</h3>
+              <ul style="color: #D1D5DB; list-style-type: none; padding-left: 0; font-size: 14px; text-align: center;">
+                ${identity.strengths.map(s => `<li style="margin-bottom: 8px;">• ${s}</li>`).join('')}
               </ul>
             </div>
             
             <div>
-              <h3 style="color: #EF4444; font-weight: 600; margin-bottom: 10px;">Challenges</h3>
-              <ul style="color: #D1D5DB; list-style-type: disc; padding-left: 20px; font-size: 14px;">
-                ${identity.challenges.map(c => `<li style="margin-bottom: 6px;">${c}</li>`).join('')}
+              <h3 style="color: #EF4444; font-weight: 600; margin-bottom: 10px; text-align: center;">Challenges</h3>
+              <ul style="color: #D1D5DB; list-style-type: none; padding-left: 0; font-size: 14px; text-align: center;">
+                ${identity.challenges.map(c => `<li style="margin-bottom: 8px;">• ${c}</li>`).join('')}
               </ul>
             </div>
           </div>
