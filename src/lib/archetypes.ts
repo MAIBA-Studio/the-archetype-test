@@ -194,7 +194,7 @@ export const functionArchetypes: Archetype[] = [
     category: 'function',
     name: 'Visionary',
     emoji: '👁️',
-    description: 'A mind ahead of its time, the Visionary dreams of what others can't yet see, shaping reality to match their ideals.',
+    description: 'A mind ahead of its time, the Visionary dreams of what others cannot yet see, shaping reality to match their ideals.',
     traits: ['Foresighted', 'Grandiose', 'Unconventional'],
     strengths: ['Long-term thinking', 'Innovation', 'Inspiring others with possibility'],
     challenges: ['Impracticality', 'Frustration with present limitations', 'Disconnection from reality']
@@ -214,7 +214,7 @@ export const functionArchetypes: Archetype[] = [
     category: 'function',
     name: 'Mad Genius',
     emoji: '🧪',
-    description: 'Dancing on the razor's edge of genius and insanity, the Mad Genius crafts wonders—and horrors—with equal ease.',
+    description: 'Dancing on the razor\'s edge of genius and insanity, the Mad Genius crafts wonders—and horrors—with equal ease.',
     traits: ['Brilliant', 'Unhinged', 'Erratic'],
     strengths: ['Revolutionary ideas', 'Thinking beyond convention', 'Unpredictable creativity'],
     challenges: ['Mental instability', 'Social alienation', 'Ethical boundaries']
@@ -264,7 +264,7 @@ export const functionArchetypes: Archetype[] = [
     category: 'function',
     name: 'Scholar',
     emoji: '📖',
-    description: 'For the Scholar, knowledge is sacred, and understanding is the key to unlocking the universe's secrets.',
+    description: 'For the Scholar, knowledge is sacred, and understanding is the key to unlocking the universe\'s secrets.',
     traits: ['Inquisitive', 'Logical', 'Methodical'],
     strengths: ['Deep understanding', 'Analytical thinking', 'Objective assessment'],
     challenges: ['Ivory tower syndrome', 'Analysis paralysis', 'Overlooking emotional dimensions']
