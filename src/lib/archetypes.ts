@@ -350,6 +350,11 @@ const generateDescription = (foundation: Archetype, expression: Archetype, funct
   return templates[Math.floor(Math.random() * templates.length)];
 };
 
+// Function to remove duplicate traits
+const removeDuplicates = (array: string[]): string[] => {
+  return [...new Set(array)];
+};
+
 export const generateIdentity = (
   foundation: Archetype,
   expression: Archetype,
@@ -392,11 +397,9 @@ export const generateIdentity = (
     
   const functionTrait = [function_.traits[0]];
   
-  const traits = [
-    ...foundationTraits,
-    ...expressionTraits,
-    ...functionTrait
-  ];
+  // Combine traits from all archetypes and remove duplicates
+  const allTraits = [...foundationTraits, ...expressionTraits, ...functionTrait];
+  const uniqueTraits = removeDuplicates(allTraits);
   
   return {
     title,
@@ -404,6 +407,6 @@ export const generateIdentity = (
     emojis,
     strengths,
     challenges,
-    traits
+    traits: uniqueTraits
   };
 };
