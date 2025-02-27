@@ -48,65 +48,78 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
       // Show loading toast
       toast.loading("Generating your archetype image...");
       
-      // Create temporary element for clean export
+      // Create temporary element for clean export - using square dimensions
       const exportDiv = document.createElement('div');
       exportDiv.className = "archetype-export";
-      exportDiv.style.width = "700px";
+      exportDiv.style.width = "800px";
+      exportDiv.style.height = "800px";
       exportDiv.style.position = "absolute";
       exportDiv.style.left = "-9999px";
       exportDiv.style.backgroundColor = "#222222";
-      exportDiv.style.borderRadius = "12px";
-      exportDiv.style.padding = "32px";
+      exportDiv.style.borderRadius = "16px";
+      exportDiv.style.padding = "40px";
       exportDiv.style.color = "white";
       exportDiv.style.fontFamily = "Inter, sans-serif";
+      exportDiv.style.display = "flex";
+      exportDiv.style.flexDirection = "column";
+      exportDiv.style.justifyContent = "space-between";
       document.body.appendChild(exportDiv);
       
       // Fill with formatted content
       exportDiv.innerHTML = `
-        <div class="text-center px-6 py-8 rounded-xl" style="position: relative; z-index: 1;">
-          <!-- Logo at the top -->
-          <div style="text-align: center; margin-bottom: 20px;">
+        <div class="text-center px-6" style="position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
+          <!-- Header section with logo -->
+          <div style="text-align: center; margin-bottom: 10px;">
             <img 
               src="/lovable-uploads/4048d3b1-d98a-4f7c-a3f2-97a8db4ca71f.png" 
               alt="Maiba Studio" 
-              style="height: 60px; margin: 0 auto;"
+              style="height: 50px; margin: 0 auto;"
             />
           </div>
 
-          <div style="margin-bottom: 24px; display: flex; justify-content: center; gap: 16px;">
-            ${identity.emojis.map(emoji => `<span style="font-size: 48px;">${emoji}</span>`).join('')}
+          <!-- Large emojis section -->
+          <div style="margin: 0 auto 20px; display: flex; justify-content: center; gap: 20px;">
+            ${identity.emojis.map(emoji => `<span style="font-size: 84px; margin-bottom: 10px;">${emoji}</span>`).join('')}
           </div>
           
-          <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 16px; color: white;">${identity.title}</h2>
-          
-          <div style="margin-bottom: 24px; font-size: 18px; line-height: 1.6; color: #E0E0E0; max-width: 600px; margin-left: auto; margin-right: auto;">
-            ${identity.description}
+          <!-- Title and description -->
+          <div style="margin-bottom: 20px;">
+            <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 16px; color: white;">${identity.title}</h2>
+            
+            <div style="font-size: 16px; line-height: 1.6; color: #E0E0E0; max-width: 600px; margin-left: auto; margin-right: auto;">
+              ${identity.description}
+            </div>
           </div>
           
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; text-align: left;">
+          <!-- Strengths and challenges -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; text-align: left;">
             <div>
-              <h3 style="color: #10B981; font-weight: 600; margin-bottom: 12px;">Strengths</h3>
-              <ul style="color: #D1D5DB; list-style-type: disc; padding-left: 20px;">
+              <h3 style="color: #10B981; font-weight: 600; margin-bottom: 10px;">Strengths</h3>
+              <ul style="color: #D1D5DB; list-style-type: disc; padding-left: 20px; font-size: 14px;">
                 ${identity.strengths.map(s => `<li style="margin-bottom: 6px;">${s}</li>`).join('')}
               </ul>
             </div>
             
             <div>
-              <h3 style="color: #EF4444; font-weight: 600; margin-bottom: 12px;">Challenges</h3>
-              <ul style="color: #D1D5DB; list-style-type: disc; padding-left: 20px;">
+              <h3 style="color: #EF4444; font-weight: 600; margin-bottom: 10px;">Challenges</h3>
+              <ul style="color: #D1D5DB; list-style-type: disc; padding-left: 20px; font-size: 14px;">
                 ${identity.challenges.map(c => `<li style="margin-bottom: 6px;">${c}</li>`).join('')}
               </ul>
             </div>
           </div>
           
-          <div style="display: flex; justify-content: center; margin-bottom: 24px;">
-            <div style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 500px;">
-              ${identity.traits.map(trait => 
-                `<span style="display: inline-block; font-size: 14px; background-color: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 4px; margin: 4px;">${trait}</span>`).join('')}
+          <!-- Key attributes -->
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: center;">
+              <div style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 600px;">
+                ${identity.traits.map(trait => 
+                  `<span style="display: inline-block; font-size: 14px; background-color: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 4px; margin: 4px;">${trait}</span>`).join('')}
+              </div>
             </div>
           </div>
           
-          <div style="margin-top: 32px; text-align: center; font-size: 12px; color: #9CA3AF;">
+          <!-- Footer -->
+          <div style="margin-top: auto; text-align: center; font-size: 12px; color: #9CA3AF;">
             Generated by Archetype - Maiba Studio
           </div>
         </div>
