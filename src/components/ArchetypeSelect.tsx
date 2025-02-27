@@ -9,6 +9,11 @@ interface ArchetypeSelectProps {
   label: string;
 }
 
+// Get all archetypes
+const getAllArchetypes = (): Archetype[] => {
+  return [...foundationArchetypes, ...expressionArchetypes, ...functionArchetypes];
+};
+
 const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
   const {
     selectedFoundation,
@@ -20,23 +25,9 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
     isStepActive
   } = useArchetype();
 
-  // Get archetypes for the specific category
-  const getArchetypesByCategory = (): Archetype[] => {
-    switch (type) {
-      case 'foundation':
-        return foundationArchetypes;
-      case 'expression':
-        return expressionArchetypes;
-      case 'function':
-        return functionArchetypes;
-      default:
-        return [];
-    }
-  };
-
   const getAvailableArchetypes = (): Archetype[] => {
-    // Get archetypes for this specific category
-    const archetypesForCategory = getArchetypesByCategory();
+    // Get all archetypes
+    const allArchetypes = getAllArchetypes();
     
     // Get IDs of already selected archetypes to filter them out
     const selectedIds = [
@@ -46,7 +37,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
     ].filter(Boolean) as string[];
 
     // Filter out already selected archetypes
-    return archetypesForCategory.filter(archetype => !selectedIds.includes(archetype.id));
+    return allArchetypes.filter(archetype => !selectedIds.includes(archetype.id));
   };
 
   const getCurrentSelection = (): Archetype | null => {
@@ -65,7 +56,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const archetypeId = e.target.value;
     // Find the selected archetype from all archetypes
-    const allArchetypes = [...foundationArchetypes, ...expressionArchetypes, ...functionArchetypes];
+    const allArchetypes = getAllArchetypes();
     const selected = allArchetypes.find(a => a.id === archetypeId) || null;
     
     switch (type) {
@@ -108,7 +99,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
             </option>
             {availableArchetypes.map((archetype) => (
               <option key={archetype.id} value={archetype.id}>
-                {archetype.name}
+                {archetype.name} ({archetype.category})
               </option>
             ))}
           </select>
