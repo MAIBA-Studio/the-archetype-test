@@ -69,9 +69,11 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
             </div>
           </div>
           
-          <div class="flex flex-wrap gap-2 justify-center">
-            ${identity.traits.map(trait => 
-              `<span class="text-xs bg-white/10 px-2 py-1 rounded">${trait}</span>`).join('')}
+          <div class="flex justify-center mb-4">
+            <div class="inline-flex flex-wrap justify-center gap-2 max-w-md">
+              ${identity.traits.map(trait => 
+                `<span class="inline-block text-sm bg-white/10 px-3 py-1 rounded m-1">${trait}</span>`).join('')}
+            </div>
           </div>
           
           <div class="mt-8 text-center text-xs text-gray-500">
