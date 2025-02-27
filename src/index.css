@@ -89,13 +89,15 @@
   @apply bg-crimson text-white py-3 px-6 rounded-md font-medium 
          hover:bg-crimson/90 active:bg-crimson/80 
          transition-colors duration-200 
-         disabled:opacity-50 disabled:cursor-not-allowed;
+         disabled:opacity-50 disabled:cursor-not-allowed
+         flex items-center justify-center;
 }
 
 .btn-secondary {
   @apply bg-secondary/10 text-white py-3 px-6 rounded-md font-medium 
          border border-white/10 hover:bg-secondary/20 active:bg-secondary/30 
-         transition-colors duration-200;
+         transition-colors duration-200
+         flex items-center justify-center;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera on mobile */
@@ -109,4 +111,23 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+select {
+  background-color: rgba(26, 26, 26, 0.8);
+  color: white;
+}
+
+select option {
+  background-color: #1A1A1A;
+  color: white;
 }

@@ -26,12 +26,12 @@ const Result = () => {
       
       <Header />
       
-      <main className="flex-1 flex flex-col items-center pt-4 sm:pt-8 pb-10 sm:pb-16">
+      <main className="flex-1 flex flex-col items-center pt-6 sm:pt-10 pb-10 sm:pb-16">
         <IdentityResult identity={generatedIdentity} />
       </main>
       
-      <footer className="py-3 px-4 text-center flex flex-col items-center justify-center">
-        <a href="https://maiba.studio" target="_blank" rel="noopener noreferrer" className="block mb-2 hover:opacity-80 transition-opacity">
+      <footer className="py-4 px-4 text-center flex flex-col items-center justify-center mt-auto">
+        <a href="https://maiba.studio" target="_blank" rel="noopener noreferrer" className="block mb-3 hover:opacity-80 transition-opacity">
           <img 
             src="/lovable-uploads/6b4df03c-dbc9-4186-98fd-d5d03a5575ee.png" 
             alt="Maiba Studio" 

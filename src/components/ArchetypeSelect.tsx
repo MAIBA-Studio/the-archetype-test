@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Archetype, foundationArchetypes, expressionArchetypes, functionArchetypes } from '@/lib/archetypes';
 import { ChevronDown, Lock } from 'lucide-react';
@@ -87,8 +88,8 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
   const availableArchetypes = getAvailableArchetypes();
 
   return (
-    <div className={`mb-6 w-full animate-fade-in ${isActive ? 'opacity-100' : 'opacity-50'}`}>
-      <label className="block text-sm font-medium text-foreground/80 mb-2">
+    <div className={`w-full animate-fade-in ${isActive ? 'opacity-100' : 'opacity-50'}`}>
+      <label className="block text-sm font-medium text-foreground/90 mb-2">
         {label}
       </label>
       <div className="relative">
@@ -96,7 +97,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
           <select
             value={currentSelection?.id || ''}
             onChange={handleChange}
-            className="archetype-dropdown appearance-none"
+            className="w-full bg-background/10 border border-white/10 rounded-md py-2.5 px-3 appearance-none focus:outline-none focus:ring-1 focus:ring-crimson/50 transition-all text-white"
             disabled={!isActive}
           >
             <option value="" disabled>
@@ -104,12 +105,12 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
             </option>
             {availableArchetypes.map((archetype) => (
               <option key={archetype.id} value={archetype.id}>
-                {archetype.name}
+                {archetype.emoji} {archetype.name}
               </option>
             ))}
           </select>
         ) : (
-          <div className="flex items-center justify-between archetype-dropdown bg-secondary/50 cursor-not-allowed">
+          <div className="flex items-center justify-between w-full bg-background/5 border border-white/5 rounded-md py-2.5 px-3 cursor-not-allowed">
             <span className="text-foreground/50">Select {label}...</span>
             <Lock size={16} className="text-foreground/40" />
           </div>
@@ -121,7 +122,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({ type, label }) => {
         )}
       </div>
       {currentSelection && (
-        <p className="mt-2 text-sm text-foreground/60">
+        <p className="mt-2 text-sm text-foreground/70 italic">
           {currentSelection.description}
         </p>
       )}
