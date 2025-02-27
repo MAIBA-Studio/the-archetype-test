@@ -12,7 +12,7 @@ const Index = () => {
       <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 pb-8">
         <div className="max-w-md w-full mx-auto text-center">
           <div className="flex justify-center mb-6">
-            <div className="text-5xl sm:text-6xl animate-float">👁️</div>
+            <div className="text-5xl sm:text-6xl animate-float"><@></div>
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 tracking-tight bg-gradient-to-r from-crimson to-crimson/80 bg-clip-text text-transparent animate-fade-in">
