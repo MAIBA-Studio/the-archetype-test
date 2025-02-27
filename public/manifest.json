@@ -1,20 +1,20 @@
 
 {
-  "short_name": "Archetype",
-  "name": "Archetype: Identity Framework",
+  "short_name": "The @ Test",
+  "name": "The @ Test by Maiba Studio",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "/lovable-uploads/07a8dc77-316c-4ecb-acd1-1eacdc559967.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "/lovable-uploads/07a8dc77-316c-4ecb-acd1-1eacdc559967.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/lovable-uploads/07a8dc77-316c-4ecb-acd1-1eacdc559967.png",
       "type": "image/png",
       "sizes": "512x512"
     }
