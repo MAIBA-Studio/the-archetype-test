@@ -74,7 +74,7 @@ const ArchetypeSelect: React.FC<ArchetypeSelectProps> = ({
   const currentSelection = getCurrentSelection();
   const availableArchetypes = getAvailableArchetypes();
   return <div className={`w-full animate-fade-in ${isActive ? 'opacity-100' : 'opacity-50'}`}>
-      <label className="block text-sm font-medium text-foreground/90 mb-2 bg-slate-50">
+      <label className="block text-sm font-medium text-foreground/90 mb-2 bg-transparent">
         {label}
       </label>
       <div className="relative">
