@@ -15,7 +15,7 @@ const Index = () => {
             <div className="text-5xl sm:text-6xl animate-float">👁️</div>
           </div>
           
-          <h1 className="sm:text-4xl mb-4 tracking-tight bg-gradient-to-r from-crimson to-crimson/80 bg-clip-text animate-fade-in text-[#d72638] my-0 py-[5px] text-4xl font-bold text-center">The < @ > Test</h1>
+          <h1 className="sm:text-4xl font-bold mb-4 tracking-tight bg-gradient-to-r from-crimson to-crimson/80 bg-clip-text animate-fade-in text-[D72638] text-[#d72638]">The @ Test</h1>
           
           <h2 className="text-xl sm:text-2xl font-semibold mb-6 animate-fade-in [animation-delay:100ms] text-white">Choose Your Identity</h2>
           
