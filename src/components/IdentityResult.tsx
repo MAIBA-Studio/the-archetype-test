@@ -24,10 +24,16 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
     toast.success('Identity saved successfully!');
   };
 
+  // Swap the 1st and 2nd emojis for display
+  const displayEmojis = [...identity.emojis];
+  if (displayEmojis.length >= 2) {
+    [displayEmojis[0], displayEmojis[1]] = [displayEmojis[1], displayEmojis[0]];
+  }
+
   return (
     <div className="w-full max-w-lg mx-auto px-4 sm:px-6 py-6 sm:py-10 animate-fade-in">
       <div className="flex justify-center mb-6 space-x-4">
-        {identity.emojis.map((emoji, index) => (
+        {displayEmojis.map((emoji, index) => (
           <div 
             key={index} 
             className="text-3xl sm:text-4xl animate-float" 

@@ -1,4 +1,3 @@
-
 export interface Archetype {
   id: string;
   category: 'foundation' | 'expression' | 'function';
@@ -311,16 +310,52 @@ export const functionArchetypes: Archetype[] = [
   }
 ];
 
+// Helper function to get a random item from an array without duplicates
+const getRandomItem = <T>(array: T[], excludeItems: T[] = []): T => {
+  const availableItems = array.filter(item => !excludeItems.includes(item));
+  if (availableItems.length === 0) return array[0]; // Fallback
+  return availableItems[Math.floor(Math.random() * availableItems.length)];
+};
+
+// Generate dynamic title based on the archetype combination
+const generateTitle = (foundation: Archetype, expression: Archetype, function_: Archetype): string => {
+  const templates = [
+    `The ${expression.name} ${foundation.name} ${function_.name}`,
+    `${foundation.name}'s ${expression.name} ${function_.name}`,
+    `${expression.name} of ${foundation.name} ${function_.name}`,
+    `${foundation.name} with ${expression.name} ${function_.name}`,
+    `${foundation.name} ${expression.name} through ${function_.name}`,
+    `The ${function_.name} of the ${expression.name} ${foundation.name}`,
+    `${expression.name} ${foundation.name} with ${function_.name} Vision`,
+    `The ${foundation.name} ${function_.name} Who ${expression.name}s`,
+  ];
+  
+  return templates[Math.floor(Math.random() * templates.length)];
+};
+
+// Generate dynamic description based on the archetype combination
+const generateDescription = (foundation: Archetype, expression: Archetype, function_: Archetype): string => {
+  const templates = [
+    `A ${foundation.traits[0].toLowerCase()} individual who combines ${expression.name.toLowerCase()}'s ${expression.traits[0].toLowerCase()} nature with ${function_.name.toLowerCase()}'s ${function_.traits[0].toLowerCase()} approach.`,
+    `Embodying the ${foundation.name.toLowerCase()}'s ${foundation.traits[0].toLowerCase()} essence, this persona channels the ${expression.traits[0].toLowerCase()} energy of a ${expression.name.toLowerCase()} through the lens of a ${function_.name.toLowerCase()}.`,
+    `At their core a ${foundation.name.toLowerCase()}, they express themselves with the ${expression.traits[0].toLowerCase()} spirit of the ${expression.name.toLowerCase()} while functioning through the ${function_.traits[0].toLowerCase()} methods of the ${function_.name.toLowerCase()}.`,
+    `A soul defined by ${foundation.name.toLowerCase()}'s ${foundation.traits[1].toLowerCase()} quality, empowered by the ${expression.name.toLowerCase()}'s ${expression.traits[1].toLowerCase()} expression, and manifested through the ${function_.name.toLowerCase()}'s ${function_.traits[0].toLowerCase()} specialization.`,
+    `The foundation of a ${foundation.name.toLowerCase()} expressed through the ${expression.traits[0].toLowerCase()} energy of a ${expression.name.toLowerCase()} and refined by the ${function_.traits[1] ? function_.traits[1].toLowerCase() : function_.traits[0].toLowerCase()} approach of a ${function_.name.toLowerCase()}.`,
+  ];
+  
+  return templates[Math.floor(Math.random() * templates.length)];
+};
+
 export const generateIdentity = (
   foundation: Archetype,
   expression: Archetype,
   function_: Archetype
 ): GeneratedIdentity => {
-  // Generate a title that combines all three archetypes
-  const title = `${expression.name} ${foundation.name} ${function_.name}`;
+  // Generate a dynamic title
+  const title = generateTitle(foundation, expression, function_);
   
-  // Generate a description that combines aspects of all three
-  const description = `A ${foundation.traits[0].toLowerCase()} individual who combines ${expression.name.toLowerCase()}'s ${expression.traits[0].toLowerCase()} nature with ${function_.name.toLowerCase()}'s ${function_.traits[0].toLowerCase()} approach.`;
+  // Generate a dynamic description
+  const description = generateDescription(foundation, expression, function_);
   
   // Combine emojis in the correct order: Foundation, Expression, Function
   const emojis = [foundation.emoji, expression.emoji, function_.emoji];
@@ -339,12 +374,24 @@ export const generateIdentity = (
     ...function_.challenges.slice(0, 1)
   ];
   
-  // Select traits (1 from each, plus an extra from foundation)
+  // Select traits (2 from foundation, 2 from expression, 1 from function)
+  const foundationTraits = foundation.traits.length >= 2 
+    ? foundation.traits.slice(0, 2) 
+    : [...foundation.traits, foundation.traits[0]];
+    
+  const expressionTraits = expression.traits.length >= 2 
+    ? [
+        getRandomItem(expression.traits),
+        getRandomItem(expression.traits, [getRandomItem(expression.traits)])
+      ]
+    : [...expression.traits, expression.traits[0]];
+    
+  const functionTrait = [function_.traits[0]];
+  
   const traits = [
-    ...foundation.traits.slice(0, 1),
-    ...expression.traits.slice(0, 1),
-    ...function_.traits.slice(0, 1),
-    ...foundation.traits.slice(1, 2)
+    ...foundationTraits,
+    ...expressionTraits,
+    ...functionTrait
   ];
   
   return {
