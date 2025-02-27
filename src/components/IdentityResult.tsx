@@ -5,13 +5,14 @@ import { useArchetype } from '@/context/ArchetypeContext';
 import { ArrowLeft, Save } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { getArchetypeDescription } from '@/lib/archetypeDescriptions';
 
 interface IdentityResultProps {
   identity: GeneratedIdentity;
 }
 
 const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
-  const { resetSelections } = useArchetype();
+  const { resetSelections, selectedFoundation, selectedExpression, selectedFunction } = useArchetype();
   const navigate = useNavigate();
 
   const handleRestart = () => {
@@ -53,30 +54,30 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
         {/* Foundation */}
         <div id="foundation" className="bg-white/5 rounded-xl p-4">
           <h3 className="text-crimson font-semibold mb-2 flex items-center gap-2">
-            <span>◉</span> Foundation: {identity.traits[0]}
+            <span>◉</span> Foundation: {selectedFoundation?.name}
           </h3>
           <p className="text-gray-300 text-sm">
-            The {identity.traits[0]} forms the core of this identity, bringing {identity.traits[1]}-like qualities.
+            {getArchetypeDescription(selectedFoundation?.id || '')}
           </p>
         </div>
 
         {/* Expression */}
         <div id="expression" className="bg-white/5 rounded-xl p-4">
           <h3 className="text-crimson font-semibold mb-2 flex items-center gap-2">
-            <span>◉</span> Expression: {identity.traits[2]}
+            <span>◉</span> Expression: {selectedExpression?.name}
           </h3>
           <p className="text-gray-300 text-sm">
-            This identity expresses itself through {identity.traits[2]} methods and {identity.traits[3]} approaches.
+            {getArchetypeDescription(selectedExpression?.id || '')}
           </p>
         </div>
 
         {/* Function */}
         <div id="function" className="bg-white/5 rounded-xl p-4">
           <h3 className="text-crimson font-semibold mb-2 flex items-center gap-2">
-            <span>✧</span> Function: {identity.traits[4]}
+            <span>✧</span> Function: {selectedFunction?.name}
           </h3>
           <p className="text-gray-300 text-sm">
-            This identity functions with purpose and intention through {identity.traits[4]} specialization.
+            {getArchetypeDescription(selectedFunction?.id || '')}
           </p>
         </div>
 
