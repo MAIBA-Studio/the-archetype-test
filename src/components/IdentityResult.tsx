@@ -24,19 +24,16 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
     toast.success('Identity saved successfully!');
   };
 
-  // Swap the 1st and 2nd emojis for display
+  // Display emojis in their original order
   const displayEmojis = [...identity.emojis];
-  if (displayEmojis.length >= 2) {
-    [displayEmojis[0], displayEmojis[1]] = [displayEmojis[1], displayEmojis[0]];
-  }
 
   return (
-    <div className="w-full max-w-lg mx-auto px-4 sm:px-6 py-6 sm:py-10 animate-fade-in">
-      <div className="flex justify-center mb-8 space-x-6">
+    <div className="w-full max-w-md mx-auto px-4 py-4 animate-fade-in">
+      <div className="flex justify-center mb-6 space-x-6">
         {displayEmojis.map((emoji, index) => (
           <div 
             key={index} 
-            className="text-4xl sm:text-5xl animate-float" 
+            className="text-4xl animate-float" 
             style={{ animationDelay: `${index * 0.2}s` }}
           >
             {emoji}
@@ -44,48 +41,97 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
         ))}
       </div>
 
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-crimson to-crimson/80 bg-clip-text text-transparent">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-2 text-white">
         {identity.title}
       </h1>
+      
+      <p className="text-center text-blue-300/80 mb-6">
+        {identity.description}
+      </p>
 
-      <div className="neo-card p-6 sm:p-8 mb-8 shadow-lg shadow-black/20">
-        <p className="text-center text-foreground/90 mb-8 text-lg leading-relaxed">
-          {identity.description}
-        </p>
-
-        <div className="grid sm:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-xl font-medium mb-4 text-crimson">Strengths</h3>
-            <ul className="space-y-3">
-              {identity.strengths.map((strength, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="text-crimson mr-2 font-bold">+</span>
-                  <span>{strength}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-medium mb-4 text-crimson">Challenges</h3>
-            <ul className="space-y-3">
-              {identity.challenges.map((challenge, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="text-crimson mr-2 font-bold">-</span>
-                  <span>{challenge}</span>
-                </li>
-              ))}
-            </ul>
+      <div className="space-y-4">
+        {/* Foundation */}
+        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
+          <h3 className="text-crimson font-medium mb-1 flex items-center">
+            <span className="mr-2">◉</span> Foundation: {identity.traits[0]}
+          </h3>
+          <p className="text-sm text-white/80 mb-2">
+            The {identity.traits[0]} forms the core of this identity.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <span className="bg-charcoal border border-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
+              {identity.traits[0]}-like
+            </span>
+            <span className="bg-charcoal border border-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
+              {identity.traits[1]}
+            </span>
           </div>
         </div>
 
-        <div className="mt-8">
-          <h3 className="text-xl font-medium mb-4 text-crimson">Key Traits</h3>
+        {/* Expression */}
+        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
+          <h3 className="text-crimson font-medium mb-1 flex items-center">
+            <span className="mr-2">◉</span> Expression: {identity.traits[2]}
+          </h3>
+          <p className="text-sm text-white/80 mb-2">
+            This identity expresses itself through unique methods and approaches.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <span className="bg-charcoal border border-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
+              {identity.traits[2]}
+            </span>
+            <span className="bg-charcoal border border-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
+              {identity.traits[3]}
+            </span>
+          </div>
+        </div>
+
+        {/* Function */}
+        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
+          <h3 className="text-crimson font-medium mb-1 flex items-center">
+            <span className="mr-2">✧</span> Function: {identity.traits[4]}
+          </h3>
+          <p className="text-sm text-white/80 mb-2">
+            This identity functions with purpose and intention.
+          </p>
+        </div>
+
+        {/* Strengths */}
+        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
+          <h3 className="text-green-500 font-medium mb-2">Strengths</h3>
+          <ul className="space-y-1 text-sm">
+            {identity.strengths.map((strength, index) => (
+              <li key={index} className="flex items-start">
+                <span className="mr-2">•</span>
+                <span>{strength}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Challenges */}
+        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
+          <h3 className="text-red-500 font-medium mb-2">Challenges</h3>
+          <ul className="space-y-1 text-sm">
+            {identity.challenges.map((challenge, index) => (
+              <li key={index} className="flex items-start">
+                <span className="mr-2">•</span>
+                <span>{challenge}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Key Attributes */}
+        <div className="bg-charcoal rounded-lg border border-white/10 p-4">
+          <h3 className="text-crimson font-medium mb-2 flex items-center">
+            <span className="mr-2">✧</span> Key Attributes
+          </h3>
           <div className="flex flex-wrap gap-2">
             {identity.traits.map((trait, index) => (
               <span 
                 key={index} 
-                className="inline-block bg-secondary/20 border border-white/5 px-3 py-1.5 rounded-full text-sm font-medium"
+                className="bg-charcoal border border-white/10 px-2 py-1 rounded-full text-xs font-medium"
               >
                 {trait}
               </span>
@@ -94,16 +140,16 @@ const IdentityResult: React.FC<IdentityResultProps> = ({ identity }) => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-center gap-4">
+      <div className="flex justify-between mt-8 gap-4">
         <button 
           onClick={handleRestart}
-          className="btn-secondary flex items-center justify-center"
+          className="w-1/2 py-3 flex items-center justify-center bg-transparent border border-crimson text-crimson rounded-lg hover:bg-crimson/10"
         >
           <ArrowLeft size={18} className="mr-2" /> Restart
         </button>
         <button 
           onClick={handleSave}
-          className="btn-primary flex items-center justify-center shadow-lg shadow-crimson/10"
+          className="w-1/2 py-3 flex items-center justify-center bg-crimson text-white rounded-lg hover:bg-crimson/90"
         >
           <Save size={18} className="mr-2" /> Save
         </button>

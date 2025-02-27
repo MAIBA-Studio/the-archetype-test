@@ -20,13 +20,10 @@ const Result = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-charcoal text-foreground relative">
-      {/* Grain texture overlay */}
-      <div className="grain-bg"></div>
-      
+    <div className="min-h-screen flex flex-col bg-black text-white relative">
       <Header />
       
-      <main className="flex-1 flex flex-col items-center pt-6 sm:pt-10 pb-10 sm:pb-16">
+      <main className="flex-1 flex flex-col items-center pt-4 sm:pt-6 pb-8 sm:pb-10">
         <IdentityResult identity={generatedIdentity} />
       </main>
       
@@ -38,7 +35,7 @@ const Result = () => {
             className="h-12 md:h-14"
           />
         </a>
-        <p className="text-xs text-foreground/50">© {new Date().getFullYear()} Maiba Studio - All rights reserved</p>
+        <p className="text-xs text-white/50">© {new Date().getFullYear()} Maiba Studio - All rights reserved</p>
       </footer>
     </div>
   );

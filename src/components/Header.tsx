@@ -1,19 +1,24 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   
   return (
-    <header className="py-5 px-6 relative z-10">
+    <header className="py-4 px-5 flex items-center justify-between relative z-10 text-white">
       <div 
         onClick={() => navigate('/')} 
-        className="cursor-pointer flex items-center justify-center hover:opacity-90 transition-opacity"
+        className="cursor-pointer font-bold text-lg"
       >
-        <h1 className="text-2xl font-bold tracking-tighter text-center bg-gradient-to-r from-crimson to-crimson/80 bg-clip-text text-transparent">
-          @rchetypeX
-        </h1>
+        @rchetypeX
+      </div>
+      <div 
+        onClick={() => navigate('/')}
+        className="cursor-pointer p-1"
+      >
+        <X size={20} />
       </div>
     </header>
   );
