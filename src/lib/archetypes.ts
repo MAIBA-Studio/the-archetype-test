@@ -1,3 +1,4 @@
+
 export interface Archetype {
   id: string;
   category: 'foundation' | 'expression' | 'function';
@@ -317,20 +318,23 @@ const getRandomItem = <T>(array: T[], excludeItems: T[] = []): T => {
   return availableItems[Math.floor(Math.random() * availableItems.length)];
 };
 
-// Generate dynamic title based on the archetype combination
+// Generate dynamic title based on the archetype combination following the template:
+// "The [Foundation Adjective] [Expression Noun], A/An [Function Noun]"
 const generateTitle = (foundation: Archetype, expression: Archetype, function_: Archetype): string => {
-  const templates = [
-    `The ${expression.name} ${foundation.name} ${function_.name}`,
-    `${foundation.name}'s ${expression.name} ${function_.name}`,
-    `${expression.name} of ${foundation.name} ${function_.name}`,
-    `${foundation.name} with ${expression.name} ${function_.name}`,
-    `${foundation.name} ${expression.name} through ${function_.name}`,
-    `The ${function_.name} of the ${expression.name} ${foundation.name}`,
-    `${expression.name} ${foundation.name} with ${function_.name} Vision`,
-    `The ${foundation.name} ${function_.name} Who ${expression.name}s`,
-  ];
+  // Get the foundation adjective (first trait)
+  const foundationAdjective = foundation.traits[0];
   
-  return templates[Math.floor(Math.random() * templates.length)];
+  // Expression noun is the archetype name
+  const expressionNoun = expression.name;
+  
+  // Function noun is the archetype name
+  const functionNoun = function_.name;
+  
+  // Determine if we need "A" or "An" based on the first letter of the function noun
+  const article = /^[aeiou]/i.test(functionNoun) ? "An" : "A";
+  
+  // Return formatted title
+  return `The ${foundationAdjective} ${expressionNoun}, ${article} ${functionNoun}`;
 };
 
 // Generate dynamic description based on the archetype combination
