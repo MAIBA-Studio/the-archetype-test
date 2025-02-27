@@ -19,12 +19,12 @@ const Index = () => {
           
           <h2 className="text-xl sm:text-2xl font-semibold mb-6 animate-fade-in [animation-delay:100ms] text-white">Choose Your Identity</h2>
           
-          <p className="mb-10 animate-fade-in [animation-delay:200ms] max-w-sm mx-auto text-slate-100">
+          <p className="mb-10 animate-fade-in [animation-delay:200ms] max-w-sm mx-auto text-zinc-200">
             Select three archetypes to generate a unique persona for storytelling, 
             role-playing, or self-discovery.
           </p>
           
-          <button onClick={() => navigate('/selection')} className="btn-primary w-full max-w-xs mx-auto animate-fade-in [animation-delay:300ms] shadow-lg hover:shadow-crimson/20 transition-all">
+          <button onClick={() => navigate('/selection')} className="btn-primary w-full max-w-xs mx-auto animate-fade-in [animation-delay:300ms] shadow-lg hover:shadow-crimson/20 transition-all font-bold">
             Start
           </button>
         </div>
