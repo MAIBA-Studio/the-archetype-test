@@ -38,7 +38,7 @@ const Result = () => {
             className="h-12 md:h-14"
           />
         </a>
-        <p className="text-xs text-foreground/50">© {new Date().getFullYear()} @rchetypeX - All rights reserved</p>
+        <p className="text-xs text-foreground/50">© {new Date().getFullYear()} Maiba Studio - All rights reserved</p>
       </footer>
     </div>
   );
